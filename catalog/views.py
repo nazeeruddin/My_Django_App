@@ -27,6 +27,7 @@ def index(request):
             'num_visits':num_visits},
     )
 
+
 from django.views import generic
 
 
