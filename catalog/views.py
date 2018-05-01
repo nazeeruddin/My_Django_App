@@ -20,8 +20,14 @@ def index(request):
     num_visits=request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits+1
     #this is for using public api
-    response = requests.get('http://freegeoip.net/json/')
-    geodata = response.json()
+    #response = requests.get('http://freegeoip.net/json/')
+    #geodata = response.json()
+    is_cached = ('geodata' in request.session)
+    if not is_cached:
+        ip_address = request.META.get('HTTP_X_FORWARDED_FOR', '')
+        response = requests.get('http://freegeoip.net/json/%s' % ip_address)
+        request.session['geodata'] = response.json()
+    geodata = request.session['geodata']
     # Render the HTML template index.html with the data in the context variable.
     return render(
         request,
