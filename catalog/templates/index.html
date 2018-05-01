@@ -83,6 +83,11 @@ article {
 	<p>This website contains collection of books for Django and Pyton Related technologies. You can read books here for free. staff menbes actively updatig new Books every day. you can barrow a book or reserve a book based on your need</p>
 	<p>Do yo have interest to write books? and become author ? this is the right platform for you. become a staff by <a href="{% url 'login'%}?next={{request.path}}">Login</a> into stite here and start writing books</p>
 </article>
+<article>
+<h2 style="color:blue">Your GEO Information</h2>
+  <p>Your ip address is <strong>{{ ip }}</strong>, and you are probably in <strong>{{ country }}</strong> right now.</p>
+  <p>You are probably in: <strong>state: {{region_name}}</strong> and city :<strong>{{city}}</strong><p>
+</article>
 <article calss="profile">
 {% load static %}
 <h2>About My Self</h2>
@@ -92,6 +97,7 @@ article {
 <p>Email ID:<b>nazeershaik95@gmail.com</b></p>
 <p>mobile:<b>+91 9063172041</b></p>
 </article>
+
 
 <footer>Copyright &copy; Nazeer Shaik</footer>
 </div>
