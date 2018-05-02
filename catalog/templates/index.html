@@ -1,106 +1,349 @@
-<!DOCTYPE html>
-<html>
-<title>Django Times</title>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+
 <head>
+<meta charset="utf-8">
+<meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-div.container {
-    width: 100%;
-}
-div.profile {
-	padding:1em;
-	align:centre;
-}
-div.align_card {
-	position: relative;
-    top: 20px;
-    right: 11000px;
-    left: 1500px;
-}
-img {
-    border-radius: 60%;
-}
-
-header, footer {
-    padding: 1em;
-    color: white;
-    background-color: black;
-    clear: left;
-    text-align: center;
-}
-body {
-    text-align:left-side;
-}
-nav {
-    float: left;
-    max-width: 160px;
-    margin: 0;
-    padding: 1em;
-	text-align: left;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-   
-nav ul a {
-    text-decoration: none;
-}
-
-article {
-    margin-left: 150px;
-    border-left: 1px solid gray;
-    padding: 1em;
-    overflow: hidden;
-}
-
-</style>
+<title>Django Times</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+<link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-icon.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
+
 <body>
-{% block content %}
-<div class="container">
-<header><h1><i>Django Times</i></h1></header>
-<nav>
-  <ul>
-	<li><a href="{% url 'index' %}">Home</a></li>
+<!-- header section -->
+<section class="banner" role="banner">
+  <header id="header">
+    <div class="header-content clearfix"> <a class="logo" href="/">Django Times</a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="#intro">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#works">Popular Books</a></li>
+          <li><a href="#teams">About My Self</a></li>
+          <li><a href="#testimonials">Phylosophy</a></li>
+          <li><a href="#contact">Contact</a></li>
+		  <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+  </header>
+  <!-- banner text -->
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="banner-text text-center">
+        <h1>The Ultimate Resource for Django</h1>
+        <p>This website consist of all popular books and tutorials for Django. you can read any book which is avilable in this website for free.<br>Have the passion to write books and publish them .? here is the opportunity for you. <a href="{% url 'login'%}?next={{request.path}}">Login</a></li> to the site and start working today</p>
+		<p>click on books to start reading<br><a href="{% url 'books' %}" class="btn btn-large">Books</a></p>
+		<h4 style="color:blue">You have visited this page {{ num_visits }} times</h4>
+		<p><h2 style="color:blue">Your GEO Information</h2>
+  <p>Your ip address is <strong style="color:red">{{ ip }}</strong>, and you are probably in <strong style="color:red">{{ country }}</strong> right now.<br>
+	You are probably in state <strong style="color:red">{{region_name}}</strong> and in city <strong style="color:red">{{city}}</strong></p></div>
+      <!-- banner text --> 
+    </div>
+  </div>
+</section>
+<!-- header section --> 
+<!-- intro section -->
+<section id="intro" class="section intro">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <h3>We've got what you need!</h3>
+      <p>There are the Quick links to enter into this website</p>
+	  <p>
+<nav><ul>
     <li><a href="{% url 'books' %}">Browse Books</a></li>
 	<li><a href="{% url 'authors' %}">Browse authors</a></li>
-	<h3>login to create Books</h3>
+	<h3><a href="{% url 'login'%}?next={{request.path}}">Login</a>  to create Books</h3>
     <li><a href="{% url 'book_create' %}">Create Books</a></li>
 	<li><a href="{% url 'author_create' %}">Create Authors</a></li>
-	<h3>Records in Website</h3>
-	<li><strong>Books:</strong> {{ num_books }}</li>
-	<li><strong>Copies:</strong> {{ num_instances }}</li>
-	<li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-	<li><strong>Authors:</strong> {{ num_authors }}</li>
-	<h3><i style="color:blue">You have visited this page {{ num_visits }} times</i></h3>
   </ul>
-</nav>
-
-<article>
-	<h2><i color="blue">welcome to Django Times</i></h3>
-	<p>This website contains collection of books for Django and Pyton Related technologies. You can read books here for free. staff menbes actively updatig new Books every day. you can barrow a book or reserve a book based on your need</p>
-	<p>Do yo have interest to write books? and become author ? this is the right platform for you. become a staff by <a href="{% url 'login'%}?next={{request.path}}">Login</a> into stite here and start writing books</p>
-</article>
-<article>
-<h2 style="color:blue">Your GEO Information</h2>
-  <p>Your ip address is <strong>{{ ip }}</strong>, and you are probably in <strong>{{ country }}</strong> right now.</p>
-  <p>You are probably in: <strong>state: {{region_name}}</strong> and city :<strong>{{city}}</strong><p>
-</article>
-<article calss="profile">
+  </nav>
+  </p>
+    </div>
+  </div>
+</section>
+<!-- intro section --> 
+<!-- services section -->
+<section id="services" class="services service-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-strategy"></span>
+        <div class="services-content">
+          <h5><a href="{% url 'books' %}">Popular Django Books</a></h5>
+          <p>this section contains lot of books which are writtern for Django Web developers</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-briefcase"></span>
+        <div class="services-content">
+          <h5>connect</h5>
+          <p>conect with authors ans share your query and know arrival of new books</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-tools"></span>
+        <div class="services-content">
+          <h5><a href="{% url 'book_create' %}">Create Books</a></h5>
+          <p>have the passion to become author. enter this section to create books</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-genius"></span>
+        <div class="services-content">
+          <h5>Copies avilable: {{ num_instances_available }} </h5>
+          <p>click here to check all the avilable books which are not reserved yet</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-megaphone"></span>
+        <div class="services-content">
+          <h5>Records</h5><ul>
+          <li><strong>Books:</strong> {{ num_books }}</li>
+		  <li><strong>Copies:</strong> {{ num_instances }}</li>
+		  <li><strong>Authors:</strong> {{ num_authors }}</li></ul>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 services text-center"> <span class="icon icon-trophy"></span>
+        <div class="services-content">
+          <h5>Django Coding test</h5>
+          <p>check here to participate a coding test on your choise</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- services section --> 
+<!-- work section -->
 {% load static %}
-<h2>About My Self</h2>
-<p><img src="{% static "images/IMG_20171118_125454.png" %}" alt="My images/IMG_20171118_125454"  style="width:15%"/><p>
-<p><b>Shaik Nazeeruddin</b></p> 
-<p><b>Django Developer</b></p>
-<p>Email ID:<b>nazeershaik95@gmail.com</b></p>
-<p>mobile:<b>+91 9063172041</b></p>
-</article>
+<section id="works" class="works section no-padding">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="col-lg-3 col-md-6 col-sm-6 work"><a href="images/work-1.jpg" class="work-box"><img src="{% static "images/work-1.jpg" %}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="images/work-2.jpg" class="work-box"><img src="{% static "images/work-2.jpg" %}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="images/work-3.jpg" class="work-box"> <img src="{% static "images/work-3.jpg"%}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="images/work-4.jpg" class="work-box"> <img src="{% static "images/work-4.jpg"%}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="images/work-5.jpg" class="work-box"> <img src="{% static "images/work-5.jpg"%}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="images/work-6.jpg" class="work-box"> <img src="{% static "images/work-6.jpg"%}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="images/work-7.jpg" class="work-box"> <img src="{% static "images/work-7.jpg"%}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+      <div class="col-lg-3 col-md-6 col-sm-6 work"> <a href="images/work-8.jpg" class="work-box"> <img src="{% static "images/work-8.jpg"%}" alt="">
+        <div class="overlay">
+          <div class="overlay-caption">
+            <h5>Project Name</h5>
+            <p>Website Design</p>
+          </div>
+        </div>
+        <!-- overlay --> 
+        </a> </div>
+    </div>
+  </div>
+</section>
+<!-- work section --> 
+<!-- our team section -->
+<section id="teams" class="section teams">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+	    {% load static %}
+        <div class="person"><img src="{% static "images/IMG_20171118_125454.png" %}" alt="images/IMG_20171118_125454" class="img-responsive"><p>
+          <div class="person-content">
+            <h4>Nazeer Shaik</h4>
+            <h5 class="role">Django Developer</h5>
+            <p>Having 1.5 Ys of Experience in IT Industry</p>
+			<p>Email:<strong>nazeershaik95@gmail</strong></p>
+          </div>
+          <ul class="social-icons clearfix">
+            <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+            <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+            <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+            <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+            <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+</section>
+<!-- our team section --> 
+<!-- Testimonials section -->
+<section id="testimonials" class="section testimonials no-padding">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="flexslider">
+        <ul class="slides">
+          <li>
+            <div class="col-md-12">
+              <blockquote>
+                <h1>"Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Phasellus non dolor nibh. Nullam elementum Aenean eu leo quam..." </h1>
+                <p>Rene Brown, Open Window production</p>
+              </blockquote>
+            </div>
+          </li>
+          <li>
+            <div class="col-md-12">
+              <blockquote>
+                <h1>"Cras dictum tellus dui, vitae sollicitudin ipsum. Phasellus non dolor nibh. Nullam elementum tellus pretium feugiat shasellus non dolor nibh. Nullam elementum tellus pretium feugiat." </h1>
+                <p>Brain Rice, Lexix Private Limited.</p>
+              </blockquote>
+            </div>
+          </li>
+          <li>
+            <div class="col-md-12">
+              <blockquote>
+                <h1>"Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur...." </h1>
+                <p>Andi Simond, Global Corporate Inc</p>
+              </blockquote>
+            </div>
+          </li>
+          <li>
+            <div class="col-md-12">
+              <blockquote>
+                <h1>"Lorem ipsum dolor sit amet, consectetur adipiscing elitPhasellus non dolor nibh. Nullam elementum tellus pretium feugiat. Cras dictum tellus dui sollcitudin." </h1>
+                <p>Kristy Gabbor, Martix Media</p>
+              </blockquote>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Testimonials section --> 
 
+<!-- contact section -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 conForm">
+        <h5>Shoot An Email</h5>
+        <p>We are happy to talk you through any projects or run live demos for those wishing to see what it is to use our products and how they look like.</p>
+        <div id="message"></div>
+        <form method="post" action="php/contact.php" name="cform" id="cform">
+          <input name="name" id="name" type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" placeholder="Your name..." >
+          <input name="email" id="email" type="email" class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 noMarr" placeholder="Email Address..." >
+          <textarea name="comments" id="comments" cols="" rows="" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" placeholder="Project Details..."></textarea>
+          <input type="submit" id="submit" name="send" class="submitBnt" value="Send your query">
+          <div id="simple-msg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- contact section --> 
 
-<footer>Copyright &copy; Nazeer Shaik</footer>
-</div>
+<!-- Footer section -->
+<footer class="footer">
+  <div class="footer-top section">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col col-md-6">
+          <h5>Our Office Location</h5>
+          <p>Maratha hally Benglore , Karnataka.<br>
+            +91 9063172041<br>
+            nazeershaik95@gmail.com</p>
+          <p>Copyright © 2018 Nazeer Shaik. All Rights Reserved. Made with <i class="fa fa-heart pulse"></i> by Django Times</p>
+        </div>
+        <div class="footer-col col-md-3">
+          <h5>Services We Offer</h5>
+          <p>
+          <ul>
+            <li><a href="#">Digital Strategy</a></li>
+            <li><a href="#">Websites</a></li>
+            <li><a href="#">Videography</a></li>
+            <li><a href="#">Social Media</a></li>
+            <li><a href="#">User Experience</a></li>
+          </ul>
+          </p>
+        </div>
+        <div class="footer-col col-md-3">
+          <h5>Share with Love</h5>
+          <ul class="footer-share">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- footer top --> 
+  
+</footer>
+<!-- Footer section --> 
+<!-- JS FILES -->
+{% load static %} 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="{% static "js/bootstrap.min.js"%}"></script> 
+<script src="{% static "js/jquery.flexslider-min.js"%}"></script> 
+<script src="{% static "js/jquery.fancybox.pack.js"%}"></script> 
+<script src="{% static "js/retina.min.js"%}"></script> 
+<script src="{% static "js/modernizr.js"%}"></script> 
+<script src="{% static "js/main.js"%}"></script> 
+<script type="text/javascript" src="{% static "js/jquery.contact.js"%}"></script>
 </body>
-{% endblock %}
 </html>

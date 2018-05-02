@@ -9,7 +9,7 @@ def index(request):
     """
     View function for home page of site.
     """
-    # Generate counts of some of the main objects
+	# Generate counts of some of the main objects
     num_books=Book.objects.all().count()
     num_instances=BookInstance.objects.all().count()
     # Available copies of books
@@ -35,7 +35,6 @@ def index(request):
         context={'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors,
             'num_visits':num_visits,'ip': geodata['ip'],'country': geodata['country_name'],'city': geodata['city'],'region_name': geodata['region_name']},
     )
-
 
 from django.views import generic
 

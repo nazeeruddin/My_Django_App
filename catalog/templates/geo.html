@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<title>Django Times</title>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+div.container {
+    width: 100%;
+}
+div.profile {
+	padding:1em;
+	align:centre;
+}
+div.align_card {
+	position: relative;
+    top: 20px;
+    right: 11000px;
+    left: 1500px;
+}
+img {
+    border-radius: 60%;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+body {
+    text-align:left-side;
+}
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+	text-align: left;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 150px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+
+</style>
+</head>
+<body>
+{% block content %}
+<div class="container">
+<header><h1><i>Django Times</i></h1></header>
+<nav>
+  <ul>
+	<li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'books' %}">Browse Books</a></li>
+	<li><a href="{% url 'authors' %}">Browse authors</a></li>
+	<h3>login to create Books</h3>
+    <li><a href="{% url 'book_create' %}">Create Books</a></li>
+	<li><a href="{% url 'author_create' %}">Create Authors</a></li>
+	<h3>Records in Website</h3>
+	<li><strong>Books:</strong> {{ num_books }}</li>
+	<li><strong>Copies:</strong> {{ num_instances }}</li>
+	<li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+	<li><strong>Authors:</strong> {{ num_authors }}</li>
+	<h3><i style="color:blue">You have visited this page {{ num_visits }} times</i></h3>
+  </ul>
+</nav>
+
+<article>
+	<h2><i color="blue">welcome to Django Times</i></h3>
+	<p>This website contains collection of books for Django and Pyton Related technologies. You can read books here for free. staff menbes actively updatig new Books every day. you can barrow a book or reserve a book based on your need</p>
+	<p>Do yo have interest to write books? and become author ? this is the right platform for you. become a staff by <a href="{% url 'login'%}?next={{request.path}}">Login</a> into stite here and start writing books</p>
+</article>
+<article>
+<h2 style="color:blue">Your GEO Information</h2>
+  <p>Your ip address is <strong>{{ ip }}</strong>, and you are probably in <strong>{{ country }}</strong> right now.</p>
+  <p>You are probably in: <strong>state: {{region_name}}</strong> and city :<strong>{{city}}</strong><p>
+</article>
+<article calss="profile">
+{% load static %}
+<h2>About My Self</h2>
+<p><img src="{% static "images/IMG_20171118_125454.png" %}" alt="My images/IMG_20171118_125454"  style="width:15%"/><p>
+<p><b>Shaik Nazeeruddin</b></p> 
+<p><b>Django Developer</b></p>
+<p>Email ID:<b>nazeershaik95@gmail.com</b></p>
+<p>mobile:<b>+91 9063172041</b></p>
+</article>
+
+
+<footer>Copyright &copy; Nazeer Shaik</footer>
+</div>
+</body>
+{% endblock %}
+</html>
