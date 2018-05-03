@@ -5,21 +5,27 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="">
 <!--<![endif]-->
-
 <head>
-<meta charset="utf-8">
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Django Times</title>
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
-<link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
-<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-<link rel="stylesheet" href="{% static 'css/font-icon.css' %}">
-<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<title>Django Times</title>	
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-icon.css' %}">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+div.nav_settings {
+    float: left;
+    max-width: 100px;
+}
+</style>
 </head>
 <body>
 <!-- header section -->
@@ -40,40 +46,40 @@
       <a href="#" class="nav-toggle">Menu<span></span></a> </div>
   </header>
   <!-- banner text -->
-<nav style="">
   <div class="container">
     <div class="col-md-10 col-md-offset-1">
-      <div class="banner-text text-left"> 
-		<div class="container-fluid">
-		<ul class="sidebar-nav">
+     <div class="banner-text text-center-left">
+	<div class="nav_settings">
+		<ul>
 			<li><a href="{% url 'index' %}">Home</a></li>
 			<li><a href="{% url 'books' %}">All books</a></li>
 			<li><a href="{% url 'authors' %}">All authors</a></li>
-		{% if user.is_authenticated %}
+			{% if user.is_authenticated %}
 			<li>User: {{ user.get_username }}</li>
 			<li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
 			<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
-		{% else %}
+			{% else %}
 			<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
-		{% endif %} 
+			{% endif %} 
 		</ul>
   
-   {% if user.is_staff %}
-   <hr />
-   <ul class="sidebar-nav">
-   <li>Staff</li>
-   {% if perms.catalog.can_mark_returned %}
-   <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
-   {% endif %}
-   </ul>
-    {% endif %}
-  </div>
-</nav>
-<article style="margin-left: 300px" style="padding: 1em">
-  <div class="col-sm-10 ">
-  {% block content %}{% endblock %}
-  
-  {% block pagination %}
+			{% if user.is_staff %}
+			<h3 style="color:blue">your position</h3>
+		<ul>
+			<li>Staff</li>
+			{% if perms.catalog.can_mark_returned %}
+			<li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+			{% endif %}
+		</ul>
+			{% endif %}
+	</div>
+	<!--this is nav-->
+
+	<div class="container-fluid">
+	<article>
+	<div class="col-sm-10 ">
+	{% block content %}{% endblock %}
+	{% block pagination %}
     {% if is_paginated %}
         <div class="pagination">
             <span class="page-links">
