@@ -13,6 +13,3 @@ The main features that have currently been implemented are:
 * Librarians can renew reserved books
 
 ![Local Library Model](https://github.com/mdn/django-locallibrary-tutorial/blob/master/catalog/static/images/local_library_model_uml.png)
-
-
-For more information see the associated [MDN tutorial home page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website).

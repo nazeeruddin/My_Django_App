@@ -1,21 +1,52 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Book List</h1>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid blue;
+}
 
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+	border: 1px solid blue;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+table#t01 tr,th {
+    background-color: blue;
+    color: white;
+}
+</style>
+	
+	<table>
+		<caption><h1 style="color:blue">Book List</h1></caption>
+	  <tr>
+       <th>Book Name</th>
+       <th>Author</th>
+       <th>published date</th>
+      </tr>
+  
     {% if book_list %}
-    <ul>
 
       {% for book in book_list %}
-      <li>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
-      </li>
-      {% endfor %}
+	<tr>
+       <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+       <td>{{book.author}}</td>
+       <td>date</td>
+     </tr>
 
-    </ul>
+      {% endfor %}
 
     {% else %}
       <p>There are no books in the library.</p>
-    {% endif %}       
+    {% endif %} 
+</table>	
 {% endblock %}
 
