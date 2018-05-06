@@ -1,13 +1,18 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-
+<section id="contact" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div id="message"></div>
 <form action="" method="post">
     {% csrf_token %}
     <table>
     {{ form.as_table }}
     </table>
     <input type="submit" value="Submit" />
+</section>
     
 </form>
 {% endblock %}
