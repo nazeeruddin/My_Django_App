@@ -30,7 +30,7 @@ table#t01 tr,th {
 	  <tr>
        <th>Book Name</th>
        <th>Author</th>
-       <th>published date</th>
+       <th>Language</th>
       </tr>
   
     {% if book_list %}
@@ -39,7 +39,7 @@ table#t01 tr,th {
 	<tr>
        <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
        <td>{{book.author}}</td>
-       <td>date</td>
+       <td>{{book.language}}</td>
      </tr>
 
       {% endfor %}

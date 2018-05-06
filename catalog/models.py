@@ -65,6 +65,9 @@ class Book(models.Model):
         String for representing the Model object.
         """
         return self.title
+		
+    class Meta:
+        ordering = ["author"]
         
         
 import uuid # Required for unique book instances
