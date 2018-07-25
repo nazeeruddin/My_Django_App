@@ -22,18 +22,12 @@ def index(request):
     #this is for using public api
     #response = requests.get('http://freegeoip.net/json/')
     #geodata = response.json()
-    is_cached = ('geodata' in request.session)
-    if not is_cached:
-        ip_address = request.META.get('HTTP_X_FORWARDED_FOR', '')
-        response = requests.get('http://freegeoip.net/json/%s' % ip_address)
-        request.session['geodata'] = response.json()
-    geodata = request.session['geodata']
     # Render the HTML template index.html with the data in the context variable.
     return render(
         request,
         'index.html',
         context={'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors,
-            'num_visits':num_visits,'ip': geodata['ip'],'country': geodata['country_name'],'city': geodata['city'],'region_name': geodata['region_name']},
+            'num_visits':num_visits},
     )
 
 from django.views import generic
