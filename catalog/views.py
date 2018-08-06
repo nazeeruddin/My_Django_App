@@ -3,7 +3,7 @@ import requests
 
 # Create your views here.
 
-from .models import Book, Author, BookInstance, Genre
+from .models import Book, Author, BookInstance, Genre, Blog
 
 def index(request):
     """
@@ -45,6 +45,12 @@ class BookDetailView(generic.DetailView):
     Generic class-based detail view for a book.
     """
     model = Book
+
+class BlogDetailView(generic.DetailView):
+    """
+    Generic class-based detail view for a book.
+    """
+    model = Blog
 
 class AuthorListView(generic.ListView):
     """

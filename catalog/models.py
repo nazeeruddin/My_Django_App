@@ -16,7 +16,19 @@ class Genre(models.Model):
         String for representing the Model object (in Admin site etc.)
         """
         return self.name
-        
+
+
+class Blog(models.Model):
+    """
+    Model representing a book genre (e.g. Science Fiction, Non Fiction).
+    """
+    name = models.TextField(max_length=200, help_text="Enter Blog Content")
+
+    def __str__(self):
+        """
+        String for representing the Model object (in Admin site etc.)
+        """
+        return self.name
         
 class Language(models.Model):
     """
